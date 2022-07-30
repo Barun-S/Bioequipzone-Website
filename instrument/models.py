@@ -11,6 +11,7 @@ from category.models import Category
 # Create your models here.
 
 class Instrument(models.Model):
+    # id = models.BigIntegerField(primary_key = True)
     instrument_name = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200)
     instrument_description = models.TextField(max_length=500, blank=True)
