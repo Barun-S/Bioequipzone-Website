@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+<style>
+    .bg {
+        animation: slide 3s ease-in-out infinite alternate;
+        background-image: linear-gradient(-60deg, rgb(64, 204, 83) 50%, rgb(9, 180, 123) 50%);
+        bottom: 0;
+        left: -50%;
+        opacity: .5;
+        position: fixed;
+        right: -50%;
+        top: 0;
+        z-index: -1;
+    }
+    .bg2 {
+        animation-direction: alternate-reverse;
+        animation-duration: 4s;
+    }
+
+    .bg3 {
+        animation-duration: 5s;
+    }
+
+    @keyframes slide {
+        0% {
+            transform: translateX(-25%);
+        }
+        100% {
+            transform: translateX(25%);
+        }
+    }
+</style> 
+
+<section class="section-content padding-y">
+	<div class="container">
+
+		<!-- ============================ COMPONENT 1 ================================= -->
+		<h4 class="text-center mb-20">Review Your Order</h4>
+		<div class="row">
+			<aside class="col-lg-8">
+				<div class="card">
+					<h5 class="card-header">Address</h5>
+					<div class="card-body">
+						<p class="card-text mb-0">{{order.full_name}}</p>
+						<p class="card-text mb-0">{{order.full_address}}</p>
+						<p class="card-text mb-0">{{order.city}}, {{order.state}}</p>
+						<p class="card-text mb-0">{{order.email}}</p>
+						<p class="card-text mb-0">{{order.phone}}</p>
+						{% if order.order_note %}
+						<b>Order Note: </b> {{order.order_note}}
+						{% endif %}
+
+
+					</div>
+				</div>
+				{% comment %} <div class="card">
+					<h5 class="card-header">Payment Method</h5>
+					<div class="card-body">
+						<p class="card-text">PayPal</p>
+
+					</div>
+				</div> {% endcomment %}
+				<div class="card">
+					<h5 class="card-header">Review Products</h5>
+					<div class="card-body">
+						<table class="table table-borderless table-shopping-cart">
+							<thead class="text-muted">
+								<tr class="small text-uppercase">
+									<th scope="col">Product</th>
+									{% comment %} <th scope="col" width="120">Quantity</th>
+									<th scope="col" width="120">Price</th> {% endcomment %}
+
+								</tr>
+							</thead>
+							<tbody>
+                                {% for wish_item in wishlist_items %}   
+                                    <tr>
+                                        <td>
+                                            <figure class="itemside align-items-center">
+                                                <div class="aside"><img src="{{ wish_item.instrument.instrument_image.url }}" class="img-sm"></div>
+                                                <figcaption class="info">
+                                                    <a href="#" class="title text-dark">{{ wish_item.instrument.instrument_name }}</a>
+                                                    <p class="text-muted small">{{ wish_item.instrument.category }} <br> {{ wish_item.instrument.institute }}</p>
+                                                </figcaption>
+                                            </figure>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+		
+									{% comment %} <td>
+										<!-- col.// -->
+										<label for="">{{cart_item.quantity}}</label>
+									</td> {% endcomment %}
+									{% comment %} <td>
+										<div class="price-wrap">
+											<var class="price">$ {{ cart_item.sub_total }}</var>
+											<small class="text-muted"> $ {{ cart_item.product.price }} each </small>
+										</div> <!-- price-wrap .// -->
+									</td> {% endcomment %}
+							</tbody>
+						</table>
+
+					</div>
+					{% comment %} <form method="get" action="{% url 'review_order' order.order_number %}">
+						{% csrf_token %}
+						<button type="submit" class="btn btn-primary btn-block">Confirm Order</button>
+					</form> {% endcomment %}
+					 <span class="text-center"><a href="{% url 'review_order' order.order_number %}" class="btn  btn-primary"> Confirm Order </a></span> 
+				</div>
+			</aside> <!-- col.// -->
+			
+
+		</div> <!-- row.// -->
+
+		<!-- ============================ COMPONENT 1 END .// ================================= -->
+	</div> <!-- container .//  -->
+	
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+{% endblock %}

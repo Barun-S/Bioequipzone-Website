@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+<style>
+    .bg {
+        animation: slide 3s ease-in-out infinite alternate;
+        background-image: linear-gradient(-60deg, rgb(64, 204, 83) 50%, rgb(9, 180, 123) 50%);
+        bottom: 0;
+        left: -50%;
+        opacity: .5;
+        position: fixed;
+        right: -50%;
+        top: 0;
+        z-index: -1;
+    }
+    .bg2 {
+        animation-direction: alternate-reverse;
+        animation-duration: 4s;
+    }
+
+    .bg3 {
+        animation-duration: 5s;
+    }
+
+    @keyframes slide {
+        0% {
+            transform: translateX(-25%);
+        }
+        100% {
+            transform: translateX(25%);
+        }
+    }
+</style> 
+<section class="section-conten padding-y">
+{% include 'includes/alerts.html' %}
+    <div class="container">
+        <div class="row">
+        {% include 'includes/dashboard_sidebar.html' %}
+        <main class="col-md-9">
+        {% comment %} <section class="card" style="background-color: #eee;"> {% endcomment %}
+            <div class="container py-5" style="height:80%; width:800px;">
+              <div class="">
+                  <div class="card" style="border-radius: 15px; background-color: #93e2bb;">
+                    <div class="card-body p-4 text-black">
+                      <div>
+                        <h4 class="mb-4">User Profile</h4>
+                        <div class="d-flex justify-content-between">
+                          {% comment %} <p class="small mb-0"><i class="far fa-clock me-2"></i>3 hrs</p>
+                          <p class="fw-bold mb-0">$90</p> {% endcomment %}
+                        </div>
+                      </div>
+                      <div class="d-flex align-items-center mb-4">
+                        <div class="flex-shrink-0">
+                        <img src="{{userprofile.profile_picture.url}}"
+                            alt="Generic placeholder image" class="img-fluid rounded-circle border border-dark border-3"
+                            style="width: 70px;">
+                        </div>
+                        <div class="flex-grow-1 ms-3" style="margin-left:10px;">
+                          <div class="d-flex flex-row align-items-center mb-2">
+                            <p class="mb-0 me-2">{{userprofile.user.username}}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <hr>
+                          <div class="card-body" style="border-radius: 15px; background-color: #93e2bb;">
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <p class="mb-0">Full Name</p>
+                              </div>
+                              <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{userprofile.user.first_name}}</p>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <p class="mb-0">Last Name</p>
+                              </div>
+                              <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{userprofile.user.last_name}}</p>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <p class="mb-0">Email</p>
+                              </div>
+                              <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{userprofile.user.email}}</p>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <p class="mb-0">Phone Number</p>
+                              </div>
+                              <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{userprofile.user.phone_number}}</p>
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-sm-3">
+                                <p class="mb-0">Address</p>
+                              </div>
+                              <div class="col-sm-9">
+                                <p class="text-muted mb-0">{{userprofile.address_line}}</p>
+                              </div>
+                            </div>
+                        </div>
+                          <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
+                            <a href="https://forms.gle/gn7rejgZ1k5bd7q89" target="_blank" style="background-color: 
+                            green; color: white;
+                            padding: 1em 1.5em;
+                            text-decoration: none; ">
+                                Add Instrument</a>
+                            {% if total_products %}    
+                            <a href="{% url 'manage_order' None %}" style="background-color: 
+                            green; color: white;
+                            padding: 1em 1.5em;
+                            text-decoration: none; ">
+                                Manage </a>
+                            {% endif %}                
+                          </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </main>  
+      </div>
+    </div>
+</section>
+    <!-- ========================= SECTION CONTENT END// ========================= -->
+{% endblock %}
