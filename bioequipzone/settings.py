@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'wishlist',
     'orders',
     'admin_honeypot',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
