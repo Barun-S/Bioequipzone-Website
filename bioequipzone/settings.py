@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import dj_database_url
 import django_heroku
 from pathlib import Path
-# from decouple import config
+from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,10 +21,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-qrkr520k6ppe9e&g1*l5&qabj7=p8eryx-eypasj(8s#jntzj2'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG',default=True,cast=bool)
 
 ALLOWED_HOSTS = ['*',]
 
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'instrumentmanager',
     'wishlist',
     'orders',
+    'admin_honeypot',
 ]
 
 MIDDLEWARE = [
@@ -154,13 +155,13 @@ AUTH_USER_MODEL = 'accounts.Account'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 DEFAULT_FROM_EMAIL = 'shakya.2@iitj.ac.in'
-EMAIL_HOST = 'smtp.gmail.com' 
-EMAIL_PORT = 587
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT',cast=int)
 # EMAIL_HOST_USER = 'bioequipzon@gmail.com'
-EMAIL_HOST_USER = 'shakya.2@iitj.ac.in'
-EMAIL_HOST_PASSWORD = 'fghvhnzxeengalty' #shakya 
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD') 
 # EMAIL_HOST_PASSWORD = 'tpltnzcboeusrgnl' # bioeq
-EMAIL_USE_TLS = True 
+EMAIL_USE_TLS = config('EMAIL_USE_TLS',cast=bool)
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
