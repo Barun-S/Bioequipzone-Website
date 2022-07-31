@@ -153,11 +153,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.Account'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-DEFAULT_FROM_EMAIL = 'bioequipzon@gmail.com'
+DEFAULT_FROM_EMAIL = 'shakya.2@iitj.ac.in'
 EMAIL_HOST = 'smtp.gmail.com' 
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'bioequipzon@gmail.com' 
-EMAIL_HOST_PASSWORD = 'twojslbppwbcmrkf'
+# EMAIL_HOST_USER = 'bioequipzon@gmail.com'
+EMAIL_HOST_USER = 'shakya.2@iitj.ac.in'
+EMAIL_HOST_PASSWORD = 'fghvhnzxeengalty' #shakya 
+# EMAIL_HOST_PASSWORD = 'tpltnzcboeusrgnl' # bioeq
 EMAIL_USE_TLS = True 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
